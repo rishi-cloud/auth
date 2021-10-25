@@ -8,7 +8,7 @@ const CommonDataProvider = (props) => {
   useEffect(() => {
     const getCommonData = async () => {
       const res = await axios.get(
-        `https://${props.config.auth0Domain}/client/${props.config.clientId}.js`
+        `https://${props.config.auth0Domain}/client/${props.config.clientID}.js`
       );
       const data = res.data;
       if (typeof data === "string") {
