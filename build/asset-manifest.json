@@ -1,20 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.54b1e372.chunk.css",
-    "main.js": "/static/js/main.dc0589f8.chunk.js",
-    "main.js.map": "/static/js/main.dc0589f8.chunk.js.map",
+    "main.css": "/static/css/main.a40e213a.chunk.css",
+    "main.js": "/static/js/main.de4546e1.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.a6f5e420.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a6f5e420.js.map",
-    "static/js/2.92c4ac2c.chunk.js": "/static/js/2.92c4ac2c.chunk.js",
-    "static/js/2.92c4ac2c.chunk.js.map": "/static/js/2.92c4ac2c.chunk.js.map",
+    "static/js/2.a88d5f80.chunk.js": "/static/js/2.a88d5f80.chunk.js",
     "index.html": "/index.html",
-    "static/css/main.54b1e372.chunk.css.map": "/static/css/main.54b1e372.chunk.css.map",
-    "static/js/2.92c4ac2c.chunk.js.LICENSE.txt": "/static/js/2.92c4ac2c.chunk.js.LICENSE.txt"
+    "static/js/2.a88d5f80.chunk.js.LICENSE.txt": "/static/js/2.a88d5f80.chunk.js.LICENSE.txt",
+    "static/media/tickIcon.cd7525e4.svg": "/static/media/tickIcon.cd7525e4.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a6f5e420.js",
-    "static/js/2.92c4ac2c.chunk.js",
-    "static/css/main.54b1e372.chunk.css",
-    "static/js/main.dc0589f8.chunk.js"
+    "static/js/2.a88d5f80.chunk.js",
+    "static/css/main.a40e213a.chunk.css",
+    "static/js/main.de4546e1.chunk.js"
   ]
 }
