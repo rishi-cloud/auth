@@ -4,24 +4,30 @@ import axios from "axios";
 const CommonDataContext = React.createContext({});
 
 const CommonDataProvider = (props) => {
-    const [connections, setConn] = useState([]);
-    useEffect(() => {
-        const getCommonData = async () => {
-            const res = await axios.get(
-                "/client/5rAu80xApaEFyGxTAsWBEl5FiNVYg1IL.js?t1634713429698"
-            );
-            const data = JSON.parse(res.data.slice(16, -2));
-            console.log(data.strategies);
-            setConn(data.strategies);
-        };
-
-        getCommonData();
-    }, []);
-    return (
-        <CommonDataContext.Provider value={{ connections }}>
-            {props.children}
-        </CommonDataContext.Provider>
-    );
+  const [connections, setConn] = useState([]);
+  useEffect(() => {
+    const getCommonData = async () => {
+      const res = await axios.get(
+        `https://${props.config.auth0Domain}/client/${props.config.clientId}.js`
+      );
+      const data = res.data;
+      if (typeof data === "string") {
+        const filteredData = data.slice(16, -2);
+        const jsonData = JSON.parse(filteredData);
+        const DB_ARRAY = jsonData?.strategies[0]?.connections.filter(
+          (item) => item.name === "Username-Password-Authentication"
+        );
+        console.log("DB ARRAY RECIVED", DB_ARRAY);
+        setConn(DB_ARRAY);
+      }
+    };
+    getCommonData();
+  }, []);
+  return (
+    <CommonDataContext.Provider value={{ connections }}>
+      {props.children}
+    </CommonDataContext.Provider>
+  );
 };
 
 export { CommonDataProvider, CommonDataContext };
