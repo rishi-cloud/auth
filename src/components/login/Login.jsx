@@ -16,6 +16,15 @@ const Login = (props) => {
     getOtp,
     socialBtn,
   } = props;
+  const trackClickEvent = async (navElement) => {
+    let utag_data = window.utag_data;
+    let utag = window.utag;
+    let utagdata = { ...utag_data };
+    utagdata["tm_global_tealium_calltype"] = "manual";
+    utagdata["tm_global_navigation_element"] = navElement;
+    utagdata["tm_global_navigation_element_click"] = "true";
+    utag.link(utagdata);
+  };
   return (
     <div className="LoginWrapperContainer">
       <form className="LoginInputWrapper">
@@ -97,7 +106,10 @@ const Login = (props) => {
             </div>
           </>
         )}
-        <button className="RequestOtp" onClick={onSubmit}>
+        <button
+          className="RequestOtp"
+          onClick={(e) => onSubmit(e) && trackClickEvent("continue-auth0")}
+        >
           {/* {!switchLogin ? (
                             <div>Sign in</div>
                         ) : LoginForm.otpAvailable ? (
