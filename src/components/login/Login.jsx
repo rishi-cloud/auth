@@ -3,7 +3,7 @@ import "./style.css";
 import translate from "../../localization/translate";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
-import SocialButtons from "./socialLogin";
+// import SocialButtons from "./socialLogin";
 
 const Login = (props) => {
   const {
@@ -13,9 +13,19 @@ const Login = (props) => {
     LoginError,
     LoginForm,
     onToggle,
-    getOtp,
-    socialBtn,
+    validateEmail,
+    // getOtp,
+    // socialBtn,
   } = props;
+  const trackClickEvent = async (navElement) => {
+    let utag_data = window.utag_data;
+    let utag = window.utag;
+    let utagdata = { ...utag_data };
+    utagdata["tm_global_tealium_calltype"] = "manual";
+    utagdata["tm_global_navigation_element"] = navElement;
+    utagdata["tm_global_navigation_element_click"] = "true";
+    utag.link(utagdata);
+  };
   return (
     <div className="LoginWrapperContainer">
       <form className="LoginInputWrapper">
@@ -96,15 +106,26 @@ const Login = (props) => {
             </div>
           </>
         )}
-        <button className="RequestOtp" onClick={onSubmit}>
-          {/* {!switchLogin ? (
-                            <div>Sign in</div>
-                        ) : LoginForm.otpAvailable ? (
-                            <div>Sign in</div>
-                        ) : (
-                            <div>Request one-time passcode</div>
-                        )} */}
-          <div>{translate("signIn")}</div>
+        <button
+          className="RequestOtp"
+          onClick={(e) => onSubmit(e) && trackClickEvent("continue-auth0")}
+          disabled={!validateEmail(LoginForm.email) || LoginForm.isSubmitting}
+          style={{
+            backgroundColor:
+              !validateEmail(LoginForm.email) || LoginForm.isSubmitting
+                ? "gray"
+                : "",
+            cursor: LoginForm.isSubmitting ? "progress" : "pointer",
+          }}
+        >
+          {!switchLogin ? (
+            <div>{translate("signIn")}</div>
+          ) : LoginForm.otpAvailable ? (
+            <div>{translate("signIn")}</div>
+          ) : (
+            <div>{translate("Request_one_time_passcode")}</div>
+          )}
+          {/* <div>{translate("signIn")}</div> */}
         </button>
       </form>
       {LoginError.errorCode && (
@@ -113,15 +134,9 @@ const Login = (props) => {
 
       <div className="SwitchContainer">
         <div className="Switch">{translate("or")}</div>
-        {/* <button className="SwitchBtn" onClick={onToggle}>
-                        {!switchLogin ? (
-                            <div>Sign in with a one-time passcode</div>
-                        ) : (
-                            <div>Sign in with password</div>
-                        )}
-                    </button> */}
+
         {!switchLogin && (
-          <button className="SwitchBtn" onClick={getOtp}>
+          <button className="SwitchBtn" onClick={onToggle}>
             <div>{translate("Sign_in_with_a_onetime_passcode")}</div>
           </button>
         )}
@@ -130,8 +145,20 @@ const Login = (props) => {
             <div>{translate("signIn_with_password")}</div>
           </button>
         )}
+        {/* {!switchLogin && (
+                    <button className="SwitchBtn" onClick={getOtp}>
+                        <div>
+                            {translate("Sign_in_with_a_onetime_passcode")}
+                        </div>
+                    </button>
+                )}
+                {switchLogin && (
+                    <button className="SwitchBtn" onClick={onToggle}>
+                        <div>{translate("signIn_with_password")}</div>
+                    </button>
+                )} */}
       </div>
-      <SocialButtons socialBtn={socialBtn} />
+      {/* <SocialButtons socialBtn={socialBtn} /> */}
     </div>
   );
 };

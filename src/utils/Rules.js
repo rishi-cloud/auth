@@ -1,5 +1,3 @@
-import React from "react";
-
 function Rules({ count }) {
   const Rules = {
     No_more_than_2_identical_characters_in_a_row:

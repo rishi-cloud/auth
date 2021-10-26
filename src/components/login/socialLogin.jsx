@@ -25,7 +25,6 @@ const SocialButtons = (props) => {
                                             onClick={() => socialBtn(item.name)}
                                             className="SocialBtn"
                                         >
-                                            {console.log(item.name)}
                                             {item.name}
                                         </button>
                                     </div>
