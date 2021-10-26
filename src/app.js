@@ -2,12 +2,10 @@
 import React, { useRef } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 
-import { Home, Profile, ExternalApi } from "./views";
-import ProtectedRoute from "./auth/protected-route";
 import Authorize from "./components/Authorize";
-import DashBoard from "./components/dashboard";
+
 import Main from "./Main";
-import Signup from "./components/signup/index";
+
 import { AccountProvider } from "./providers/AccountContext";
 import LanguageProvider from "./localization/languageProvider";
 import { LOCALES } from "./localization/constants";
@@ -60,18 +58,10 @@ const App = ({ pageConfig }) => {
               <div className="container flex-grow-1">
                 <div className="mt-5">
                   <Switch>
-                    <Route path="/" exact component={Home} />
                     <Route path="/login" exact component={() => <Main />} />
-                    <Route path="/signUp" exact component={Signup} />
                     <Route exact path="/authorize">
                       <Authorize config={pageConfig} />
                     </Route>
-                    <Route exact path="/dashboard" component={DashBoard} />
-                    <ProtectedRoute path="/profile" component={Profile} />
-                    <ProtectedRoute
-                      path="/external-api"
-                      component={ExternalApi}
-                    />
                   </Switch>
                 </div>
               </div>
