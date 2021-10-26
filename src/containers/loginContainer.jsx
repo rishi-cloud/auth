@@ -35,8 +35,7 @@ export default function LoginContainer(props) {
     };
     const socialBtn = async (name) => {
         try {
-            const res = await getSocialLogin(name);
-            console.log(res);
+            await getSocialLogin(name);
         } catch (err) {
             console.log(err);
         }
@@ -84,20 +83,29 @@ export default function LoginContainer(props) {
     };
 
     const onSubmit = async (e) => {
+        setLoginForm({
+            ...LoginForm,
+            isSubmitting: true,
+        });
+
         e.preventDefault();
         if (!switchLogin) {
             try {
-                const res = await loginWithPassword(
-                    LoginForm.email,
-                    LoginForm.password
-                );
+                await loginWithPassword(LoginForm.email, LoginForm.password);
                 setLoginError({
                     ...LoginError,
                     databaseError: "",
                 });
-                console.log(res);
+                setLoginForm({
+                    ...LoginForm,
+                    isSubmitting: false,
+                });
             } catch (err) {
                 console.log(err);
+                setLoginForm({
+                    ...LoginForm,
+                    isSubmitting: false,
+                });
                 setLoginError({
                     ...LoginError,
                     databaseError: err.description,
@@ -107,19 +115,28 @@ export default function LoginContainer(props) {
         } else {
             try {
                 if (LoginForm.otpAvailable) {
-                    const res = await otpLogin(LoginForm.email, LoginForm.otp);
-                    console.log("---------->", LoginForm.email, LoginForm.otp);
-                    console.log(res, "ankit");
-                    // } else {
-                    //   const res = await otpStart(LoginForm.email);
-                    //   console.log("enter here", res);
-                    //   setLoginForm({
-                    //     ...LoginForm,
-                    //     otpAvailable: true,
-                    //   });
+                    await otpLogin(LoginForm.email, LoginForm.otp);
+                    setLoginForm({
+                        ...LoginForm,
+                        isSubmitting: false,
+                    });
+                } else {
+                    await otpStart(LoginForm.email);
+                    setLoginForm({
+                        ...LoginForm,
+                        isSubmitting: false,
+                    });
+                    setLoginForm({
+                        ...LoginForm,
+                        otpAvailable: true,
+                    });
                 }
             } catch (err) {
                 console.log(err);
+                setLoginForm({
+                    ...LoginForm,
+                    isSubmitting: false,
+                });
                 setLoginError({
                     ...LoginError,
                     databaseError: err.description,
@@ -131,8 +148,7 @@ export default function LoginContainer(props) {
     const getOtp = async () => {
         try {
             setToggle(!switchLogin);
-            const res = await otpStart(LoginForm.email);
-            console.log("enter here", res);
+            await otpStart(LoginForm.email);
             setLoginForm({
                 ...LoginForm,
                 otpAvailable: true,
@@ -157,6 +173,7 @@ export default function LoginContainer(props) {
         LoginForm,
         LoginError,
         Continue,
+        validateEmail,
         onPressContinue,
         getOtp,
         socialBtn,
