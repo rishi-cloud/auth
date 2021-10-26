@@ -31,7 +31,7 @@ const AccountProvider = (props) => {
   //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
   //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
   //   responseType: "token id_token",
-  //   redirectUri: "http://localhost:3000/authorize",
+  //   redirectUri: "http://localhost:4040/authorize",
   // });
   const getSocialLogin = (name) => {
     return new Promise((resolve, reject) => {
@@ -54,7 +54,7 @@ const AccountProvider = (props) => {
   const SignupWithPassword = (email, password) => {
     return new Promise((resolve, reject) => {
       const variables = {
-        connection: "Test-CustomDB",
+        connection: "Username-Password-Authentication",
         email,
         password,
       };
@@ -106,7 +106,7 @@ const AccountProvider = (props) => {
     return new Promise((resolve, reject) => {
       webAuth.login(
         {
-          realm: "Test-CustomDB",
+          realm: "Username-Password-Authentication",
           username,
           password,
         },
