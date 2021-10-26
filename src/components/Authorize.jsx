@@ -9,7 +9,6 @@ const Authorize = (props) => {
 
     const parseAuthToken = () => {
         if (window.location.hash) {
-            console.log("this is the ----->", window.location.hash);
             webAuth.parseHash(
                 {
                     hash: window.location.hash,
