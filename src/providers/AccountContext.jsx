@@ -54,7 +54,7 @@ const AccountProvider = (props) => {
   const SignupWithPassword = (email, password) => {
     return new Promise((resolve, reject) => {
       const variables = {
-        connection: "Username-Password-Authentication",
+        connection: "Test-CustomDB",
         email,
         password,
       };
@@ -106,7 +106,7 @@ const AccountProvider = (props) => {
     return new Promise((resolve, reject) => {
       webAuth.login(
         {
-          realm: "Username-Password-Authentication",
+          realm: "Test-CustomDB",
           username,
           password,
         },
