@@ -20,7 +20,6 @@ const Login = (props) => {
     <div className="LoginWrapperContainer">
       <form className="LoginInputWrapper">
         {!switchLogin && (
-          <>
             <div className="LoginInputContainer">
               {LoginForm.email !== "" ? (
                 <div className="LoginInputLabel">
@@ -53,12 +52,11 @@ const Login = (props) => {
                 />
               </div>
             </div>
-          </>
         )}
         {LoginError.email && <div className="Error">{LoginError.email}</div>}
         {!switchLogin && (
           <>
-            <div className="LoginInputContainer">
+            <div className="LoginPasswordContainer">
               {LoginForm.password !== "" ? (
                 <div className="LoginInputLabel">{translate("password")}</div>
               ) : null}
@@ -80,6 +78,7 @@ const Login = (props) => {
                 />
               </div>
             </div>
+            <div className="forgotPasswordContainer"><p className="forgotPassword">Forgot password?</p></div>
           </>
         )}
         {switchLogin && LoginForm.otpAvailable && (

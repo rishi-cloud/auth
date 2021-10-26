@@ -7,7 +7,7 @@ export const DisplayRules = ({ passwordRules, PasswordPolicyState }) => {
   const getKeys = [];
   if (passwordRules?.passwordPolicy === "good") {
     for (const key of Object.keys(PasswordPolicyState)) {
-      if (key != "No_more_than_2_identical_characters_in_a_row") {
+      if (key !== "No_more_than_2_identical_characters_in_a_row") {
         getKeys.push(key);
         console.log(getKeys);
         displayAbleRule.push(ruleMap[key]);
