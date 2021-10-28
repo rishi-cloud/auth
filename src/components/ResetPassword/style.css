@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;0,800;1,700&display=swap");
+.SignupWrapper {
+  position: absolute;
+  top: 2rem;
+  left: 4rem;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+}
+.leftContainer {
+  flex: 1;
+}
+.InputAndLogoSignup {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: row;
+  padding: 1rem 1rem;
+  border-radius: 18px;
+  border: 1px solid RGB(212, 213, 219);
+  color: RGB(38, 41, 77);
+  font-size: inherit;
+  outline: none;
+}
+.RightContainer {
+  flex: 1;
+}
+.formWrapper {
+  margin: 0rem 10rem;
+}
+.Heading {
+  font-size: 3rem;
+  font-weight: 600;
+  color: red;
+}
+.Intro {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+.IntroSubHeading {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+.PointsHeading {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: gray;
+}
+.Points {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: grey;
+}
+.Input {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin-left: 0.3rem;
+  background-color: white;
+  flex: 1;
+  border: 0px solid white;
+  color: RGB(38, 41, 77);
+  font-size: 1.4rem;
+  outline: none;
+}
+.InputLabel {
+  position: absolute;
+  font-weight: 600;
+  color: rgb(175, 174, 174);
+  margin-left: 2rem;
+  margin-top: 1.2rem;
+  background-color: #fff;
+  padding: 3px;
+}
+.InputLabelPass {
+  position: absolute;
+  font-weight: 600;
+  color: rgb(175, 174, 174);
+  margin-left: 2rem;
+  margin-top: 1rem;
+  background-color: #fff;
+  padding: 5px;
+}
+.InputWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 86px;
+}
+.InputLabelCPass {
+  position: absolute;
+  font-weight: 600;
+  color: rgb(175, 174, 174);
+  margin-left: 2rem;
+  margin-top: 1rem;
+  background-color: #fff;
+  padding: 5px;
+}
+.hr {
+  border: none;
+  border-top: 2px dotted rgb(204, 204, 204);
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 100%;
+  margin-right: 3rem;
+}
+.PolicyLink {
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.SubmitButton {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgb(204, 204, 204);
+  border: 1px solid RGB(212, 213, 219);
+  box-shadow: inset 0 2px 2px 0 rgb(0 0 0 / 5%);
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+}
+.SubmitButtonActive {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgb(54, 123, 255);
+  border: 1px solid RGB(212, 213, 219);
+  box-shadow: inset 0 2px 2px 0 rgb(0 0 0 / 5%);
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+}
+.Logo {
+  width: 10rem;
+  height: 7rem;
+}
+.Password-rules {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 1rem;
+  background-color: rgb(54, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 1.5rem;
+}
+.Rule {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.tick {
+  height: 2rem;
+  width: 2rem;
+  color: rgb(54, 230, 54);
+}
+.cancel {
+  height: 2rem;
+  width: 2rem;
+  color: rgb(228, 57, 57);
+}
+.page-link {
+  color: blue;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 0.9rem;
+}
+.page-link:hover {
+  background-color: transparent;
+  color: blue;
+}
+.page-link:focus {
+  border: none;
+  outline: none;
+}
+.BottomHeadingSignUp {
+  display: flex;
+  flex-direction: row;
+  font-family: inherit;
+  font-size: 1.5rem;
+  align-items: center;
+}

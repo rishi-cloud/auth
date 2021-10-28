@@ -10,6 +10,7 @@ import { AccountProvider } from "./providers/AccountContext";
 import LanguageProvider from "./localization/languageProvider";
 import { LOCALES } from "./localization/constants";
 import { CommonDataProvider } from "./providers/CommonDataContext";
+import ResetPassword from './components/ResetPassword/index'
 
 import "./app.css";
 import { AppProvider } from "./providers/AppContext";
@@ -61,6 +62,10 @@ const App = ({ pageConfig }) => {
                                             path="/login"
                                             exact
                                             component={() => <Main />}
+                                        />
+                                         <Route
+                                            path="/reset/:ticket"
+                                            component={() => <ResetPassword />}
                                         />
                                         <Route exact path="/authorize">
                                             <Authorize config={pageConfig} />

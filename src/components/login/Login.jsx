@@ -1,6 +1,7 @@
-import React from "react";
+import React , {useContext } from "react";
 import "./style.css";
 import translate from "../../localization/translate";
+import { AppContext } from "../../providers/AppContext";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 // import SocialButtons from "./socialLogin";
@@ -17,6 +18,8 @@ const Login = (props) => {
     // getOtp,
     // socialBtn,
   } = props;
+  const { setWhichPage } = useContext(AppContext);
+   
   const trackClickEvent = async (navElement) => {
     let utag_data = window.utag_data;
     let utag = window.utag;
@@ -26,42 +29,46 @@ const Login = (props) => {
     utagdata["tm_global_navigation_element_click"] = "true";
     utag.link(utagdata);
   };
+
+  const handleForgotPasswordClick = (e) => {
+    e.preventDefault()
+    setWhichPage("forgotPassword-page");
+
+  }
   return (
     <div className="LoginWrapperContainer">
       <form className="LoginInputWrapper">
         {!switchLogin && (
-            <div className="LoginInputContainer">
-              {LoginForm.email !== "" ? (
-                <div className="LoginInputLabel">
-                  {translate("emailAddress")}
-                </div>
-              ) : null}
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  border:
-                    LoginError.isEmailError === true
-                      ? "2px solid red"
-                      : LoginError.isEmailError === false
-                      ? "2px solid green"
-                      : "",
-                  backgroundColor: "#ffff",
-                  borderRadius: "1rem",
-                }}
-              >
-                <AiOutlineMail className="LoginInputLogo" />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={LoginForm.email}
-                  placeholder="Email"
-                  className="LoginInput"
-                  onChange={onChange}
-                />
-              </div>
+          <div className="LoginInputContainer">
+            {LoginForm.email !== "" ? (
+              <div className="LoginInputLabel">{translate("emailAddress")}</div>
+            ) : null}
+            <div
+              style={{
+                flex: 1,
+                display: "flex",
+                border:
+                  LoginError.isEmailError === true
+                    ? "2px solid red"
+                    : LoginError.isEmailError === false
+                    ? "2px solid green"
+                    : "",
+                backgroundColor: "#ffff",
+                borderRadius: "1rem",
+              }}
+            >
+              <AiOutlineMail className="LoginInputLogo" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={LoginForm.email}
+                placeholder="Email"
+                className="LoginInput"
+                onChange={onChange}
+              />
             </div>
+          </div>
         )}
         {LoginError.email && <div className="Error">{LoginError.email}</div>}
         {!switchLogin && (
@@ -88,7 +95,9 @@ const Login = (props) => {
                 />
               </div>
             </div>
-            <div className="forgotPasswordContainer"><p className="forgotPassword">Forgot password?</p></div>
+            <div className="forgotPasswordContainer">
+              <button className="forgotPassword" onClick={handleForgotPasswordClick}>Forgot password?</button>
+            </div>
           </>
         )}
         {switchLogin && LoginForm.otpAvailable && (
