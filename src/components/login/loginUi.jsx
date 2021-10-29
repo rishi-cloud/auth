@@ -31,7 +31,7 @@ const LoginUI = (props) => {
                             src="https://cdn.jsdelivr.net/gh/atulrana007/McAfee-React-Appp/public/images/McAfee-Logo.png"
                         />
                         <div className="LoginIntro">
-                            {translate("Welcome_back_to")} McAfee !
+                            {translate("Welcome_back_to")} McAfee !!
                         </div>
                         <div className="LoginIntroSubHeading">
                             {translate("choose_your_signIn_method_continue")}

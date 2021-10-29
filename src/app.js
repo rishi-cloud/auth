@@ -64,7 +64,7 @@ const App = ({ pageConfig }) => {
                                             component={() => <Main />}
                                         />
                                          <Route
-                                            path="/reset/:ticket"
+                                            path="/reset"
                                             component={() => <ResetPassword />}
                                         />
                                         <Route exact path="/authorize">
