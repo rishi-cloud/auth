@@ -101,6 +101,27 @@ const AccountProvider = (props) => {
       );
     });
   };
+  const sendForgotPasswordLink = (email)=>{
+    return new Promise((resolve, reject) => {
+      webAuth.changePassword(
+        {
+          connection: 'Username-Password-Authentication',
+          email:   email,
+        },
+        (err, authResult) => {
+          if (err) {
+            console.log(err);
+            reject(err);
+            return;
+          }
+          if (authResult) {
+            window.origin = window.location.origin;
+            resolve(authResult);
+          }
+        }
+      );
+    });
+  }
 
   const loginWithPassword = (username, password) => {
     return new Promise((resolve, reject) => {
@@ -137,6 +158,8 @@ const AccountProvider = (props) => {
         storeUserData,
         isAuthenticated,
         getSocialLogin,
+        sendForgotPasswordLink,
+        
       }}
     >
       {props.children}
