@@ -33,6 +33,12 @@ const AccountProvider = (props) => {
     responseType: "token id_token",
     redirectUri: "http://localhost:4040/authorize",
   });
+  const webAuth2 = new auth0.WebAuth({
+    domain: 'live-from.us.auth0.com',
+    clientID: '23PlMK9EFDLbO0bxIfKoYLr8M39qS78E',
+    responseType: "token id_token",
+    redirectUri: "http://localhost:4040/authorize",
+  });
   const getSocialLogin = (name) => {
     return new Promise((resolve, reject) => {
       webAuth.authorize(
@@ -103,7 +109,7 @@ const AccountProvider = (props) => {
   };
   const sendForgotPasswordLink = (email)=>{
     return new Promise((resolve, reject) => {
-      webAuth.changePassword(
+      webAuth2.changePassword(
         {
           connection: 'Username-Password-Authentication',
           email:   email,
