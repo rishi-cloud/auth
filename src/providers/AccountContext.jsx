@@ -15,24 +15,24 @@ const AccountProvider = (props) => {
     localStorage.setItem("userData", JSON.stringify(data));
   };
   console.log("configs", props);
-  const webAuth = new auth0.WebAuth({
-    domain: props.config.auth0Domain,
-    clientID: props.config.clientID,
-    redirectUri: props.config.callbackURL,
-    responseType: props.config.extraParams.response_type,
-    scope: props.config.extraParams.scope,
-    state: props.config.extraParams.state,
-    nonce: props.config.extraParams.nonce,
-    _csrf: props.config.extraParams._csrf,
-    audience: props.config.extraParams.audience,
-    overrides: { __tenant: props.config.auth0Tenant },
-  });
   // const webAuth = new auth0.WebAuth({
-  //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
-  //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-  //   responseType: "token id_token",
-  //   redirectUri: "http://localhost:4040/authorize",
+  //   domain: props.config.auth0Domain,
+  //   clientID: props.config.clientID,
+  //   redirectUri: props.config.callbackURL,
+  //   responseType: props.config.extraParams.response_type,
+  //   scope: props.config.extraParams.scope,
+  //   state: props.config.extraParams.state,
+  //   nonce: props.config.extraParams.nonce,
+  //   _csrf: props.config.extraParams._csrf,
+  //   audience: props.config.extraParams.audience,
+  //   overrides: { __tenant: props.config.auth0Tenant },
   // });
+  const webAuth = new auth0.WebAuth({
+    domain: process.env.REACT_APP_AUTH0_DOMAIN,
+    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+    responseType: "token id_token",
+    redirectUri: "http://localhost:4040/authorize",
+  });
   const getSocialLogin = (name) => {
     return new Promise((resolve, reject) => {
       webAuth.authorize(
