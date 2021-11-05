@@ -57,7 +57,7 @@ const App = ({ pageConfig, passwordResetConfig }) => {
           <div className="mt-5">
             <Switch>
               <Route path="/login" exact component={() => <Main />} />
-              <Route path="/reset" component={() => <ResetPassword />} />
+              <Route path="/lo/reset" component={() => <ResetPassword />} />
               <Route exact path="/authorize">
                 <Authorize config={pageConfig} />
               </Route>
