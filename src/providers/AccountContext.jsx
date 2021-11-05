@@ -15,30 +15,31 @@ const AccountProvider = (props) => {
     localStorage.setItem("userData", JSON.stringify(data));
   };
   console.log("configs", props);
-  // const webAuth = new auth0.WebAuth({
-  //   domain: props.config.auth0Domain,
-  //   clientID: props.config.clientID,
-  //   redirectUri: props.config.callbackURL,
-  //   responseType: props.config.extraParams.response_type,
-  //   scope: props.config.extraParams.scope,
-  //   state: props.config.extraParams.state,
-  //   nonce: props.config.extraParams.nonce,
-  //   _csrf: props.config.extraParams._csrf,
-  //   audience: props.config.extraParams.audience,
-  //   overrides: { __tenant: props.config.auth0Tenant },
-  // });
+  
   const webAuth = new auth0.WebAuth({
-    domain: process.env.REACT_APP_AUTH0_DOMAIN,
-    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-    responseType: "token id_token",
-    redirectUri: "http://localhost:4040/authorize",
+    domain: props.config.auth0Domain,
+    clientID: props.config.clientID,
+    redirectUri: props.config.callbackURL,
+    responseType: props.config.extraParams.response_type,
+    scope: props.config.extraParams.scope,
+    state: props.config.extraParams.state,
+    nonce: props.config.extraParams.nonce,
+    _csrf: props.config.extraParams._csrf,
+    audience: props.config.extraParams.audience,
+    overrides: { __tenant: props.config.auth0Tenant },
   });
-  const webAuth2 = new auth0.WebAuth({
-    domain: 'live-from.us.auth0.com',
-    clientID: '23PlMK9EFDLbO0bxIfKoYLr8M39qS78E',
-    responseType: "token id_token",
-    redirectUri: "http://localhost:4040/authorize",
-  });
+  // const webAuth = new auth0.WebAuth({
+  //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+  //   responseType: "token id_token",
+  //   redirectUri: "http://localhost:3000/authorize",
+  // });
+  // const webAuth2 = new auth0.WebAuth({
+  //   domain: 'live-from.us.auth0.com',
+  //   clientID: '23PlMK9EFDLbO0bxIfKoYLr8M39qS78E',
+  //   responseType: "token id_token",
+  //   redirectUri: "http://localhost:3000/authorize",
+  // });
   const getSocialLogin = (name) => {
     return new Promise((resolve, reject) => {
       webAuth.authorize(
@@ -60,7 +61,7 @@ const AccountProvider = (props) => {
   const SignupWithPassword = (email, password) => {
     return new Promise((resolve, reject) => {
       const variables = {
-        connection: "Test-CustomDB",
+        connection: "Username-Password-Authentication",
         email,
         password,
       };
@@ -109,7 +110,7 @@ const AccountProvider = (props) => {
   };
   const sendForgotPasswordLink = (email)=>{
     return new Promise((resolve, reject) => {
-      webAuth2.changePassword(
+      webAuth.changePassword(
         {
           connection: 'Username-Password-Authentication',
           email:   email,
@@ -133,7 +134,7 @@ const AccountProvider = (props) => {
     return new Promise((resolve, reject) => {
       webAuth.login(
         {
-          realm: "Test-CustomDB",
+          realm: "Username-Password-Authentication",
           username,
           password,
         },

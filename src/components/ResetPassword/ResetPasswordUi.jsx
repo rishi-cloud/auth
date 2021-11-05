@@ -1,4 +1,4 @@
-import React , {useContext,useState }from 'react'
+import React , {useContext,useState, useEffect }from 'react'
 import { MdLockOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
 import Rules from "../../utils/Rules";
@@ -9,9 +9,10 @@ import translate from "../../localization/translate";
 import { CommonDataContext } from "../../providers/CommonDataContext";
 import { validatePassword } from "../../validator/PasswordValidator";
 import './style.css'
+import axios from 'axios'
 
 function ResetPasswordUi() {
-    const { connections } = useContext(CommonDataContext);
+    const { connections, passwordResetConfig } = useContext(CommonDataContext);
     const [showPassword, setShowPassword] = useState(false);
     const [displayRules, setDisplayRules] = useState(false);
     const [isValid, setIsValid] = useState(false);
@@ -101,6 +102,26 @@ function ResetPasswordUi() {
     const onClick = (e) => {
         setPasswordRules(connections[0]);
     };
+    const handleResetPassword = (e)=>{
+        e.preventDefault()
+        console.log("Password reset req is sent")
+        console.log(passwordResetConfig)
+        const {tenantName, csrfToken,ticket,email} = passwordResetConfig
+        console.log(tenantName, csrfToken,ticket,email)
+        axios.post(`https://${tenantName}.auth0.com/lo/reset`,`
+        _csrf=${csrfToken}&ticket=${ticket}&email=${email}&newPassword=12345678Rs@&confirmNewPassword=12345678Rs@`,{
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        }).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+          
+        
+    }
+    useEffect(() => {
+        console.log(passwordResetConfig)
+    }, [])
 
     return (
         <div className="ForgotPasswordContainer">
@@ -307,6 +328,7 @@ function ResetPasswordUi() {
                             ) : null}
                         </div>
                     </div>
+                    <button onClick={handleResetPassword}>Submit</button>
                     {SignupError.errorCode && (
                         <div className="Error">
                             {translate(SignupError.errorCode)}
