@@ -50,13 +50,16 @@ window.PasswordResetWidget = class PasswordResetWidget {
   }
 };
 
-// new window.PasswordResetWidget().init(
-//   {
-//     passwordResetConfig:{
-//       token: "token"
-//     }
-//   }
-// )
+new window.PasswordResetWidget().init(
+  {
+    passwordResetConfig:{
+      csrfToken: "xIhgzMpc-k0OOw9IsBNudzWYTHxa6UOy4lKw",
+      email: "rishi.singhal@zopsmart.com",
+      tenantName: "live-from",
+      ticket: "8nfPeX3z5M8Ybm0Fd0N5Bff9hSm9gSsc"
+    }
+  }
+)
 // ReactDOM.render(
 //   <BrowserRouter>
 //     <App pageConfig={{}} />
