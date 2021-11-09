@@ -108,16 +108,22 @@ function ResetPasswordUi() {
         console.log(passwordResetConfig)
         const {tenantName, csrfToken,ticket,email} = passwordResetConfig
         console.log(tenantName, csrfToken,ticket,email)
-        axios.post(`https://${tenantName}.us.auth0.com/lo/reset?ticket=${ticket}`,`
-        _csrf=${csrfToken}&ticket=${ticket}&email=${email}&newPassword=12345678Rs@&confirmNewPassword=12345678Rs@`,{
+        const data = new URLSearchParams({
+            _csrf: csrfToken,
+            ticket: ticket,
+            newPassword: '12345678Rs@',
+            confirmNewPassword: '12345678Rs@',
+            email: email,
+        }).toString()
+        console.log(data)
+        axios.post(`https://${tenantName}.us.auth0.com/lo/reset?ticket=${ticket}`,
+      data,{
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
         }).then(res=>{
             console.log(res)
         }).catch(err=>{
             console.log(err)
         })
-          
-        
     }
     useEffect(() => {
         console.log(passwordResetConfig)
